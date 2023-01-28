@@ -6,7 +6,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 const mongoose = require("mongoose");
-
+mongoose.connect('mongodb://127.0.0.1:27017/eventsDB');
+const eventSchema = new mongoose.Schema({
+    name: String,
+    description: String,
+})
+const Event = mongoose.model("Event", eventSchema);
 
 app.get("/", function(req,res){
     res.render("home");
