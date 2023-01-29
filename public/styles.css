@@ -8,6 +8,13 @@ h1 {
     color: #3C6255;
 }
 
+body {
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #EAE7B1;
+}
+
 #autocomplete {
     width: 30%;
 }
@@ -64,3 +71,37 @@ h1 {
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+  #main {
+    background-color: #3C6255;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 123.5vh;
+    height: 7.5vh;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+input[type="post"] {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 40px;
+  height: 6vh;
+  border: none;
+  font-weight: bold;
+  text-align: center;
+  align-self: center;
+  cursor: pointer;
+}
+
+input[type="post"]:hover {
+  cursor: pointer;
+}
+
+#sidebar {
+  padding-top: 0.5vh;
+  margin-left: 1vh;
+}

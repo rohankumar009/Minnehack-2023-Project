@@ -1,31 +1,24 @@
 <%- include('./partials/header.ejs') %>
-<form class="">
-    <input id="autocomplete" class="form-control mr-sm-2" type="search" placeholder="Your Location" aria-label="Search" style="width:40vh">
-</form>
-<div style="padding: 10px 0;">
-<button class="dropbtn" style="background-color: #3e8e41; color: #EAE7B1; border-radius: 0%; padding: 20px;">Filter By:</button>
-<div class="dropdown">
-    <button class="dropbtn" style="padding: 20px; margin-left: 20px; margin-right: 20px">Distance</button>
-    <div class="dropdown-content">
-      <a href="#">5 mi</a>
-      <a href="#">15 mi</a>
-      <a href="#">25 mi</a>
-      <a href="#">35 mi</a>
-      <a href="#">50 mi+</a>
-    </div>
-  </div>
-  
-<div class="dropdown">
-    <button class="dropbtn" style="padding: 20px;">Event Type</button>
-    <div class="dropdown-content">
-      <a href="#">Civic Learning</a>
-      <a href="#">Political Engagement</a>
-      <a href="#">Community Service</a>
-      <a href="#">Activism</a>
-      <a href="#">Funding</a>
-    </div>
-  </div>
+<div id="sidebar">
+  <label for="distance">Distance:</label>
+  <input name="distance" type="text" id="radius" style="width: 30vh; margin-top: 0.5vh;" placeholder="Miles willing to travel">
+  <br>
+  <label for="distance">Location:</label>
+  <input id="autocomplete" type="text" id="address" style="width: 30vh; margin-top: 0.5vh;" placeholder="Search Events Near...">
 </div>
+
+
+<div style="padding-top: 10px; margin-left:1vh">
+  <label for="cars">Choose Event Type:</label>
+  <select name="eventTypes" id="eventType">
+    <option value="political engagement">Political Engagement</option>
+    <option value="civic learning">Civic Learning</option>
+    <option value="community service">Community Service</option>
+    <option value="activism">Activism</option>
+    <option value="funding">Funding</option>
+  </select>
+</div>
+<button type="button" class="btn btn-primary" style="margin-left: 1vh; margin-bottom: 1vh;" onclick="codeAddress()" value="Enter">Find Events</button>
 <div class="hl"></div>
 <% events.forEach(function(event){ %>
     <div style="padding-top: 10px;">
@@ -45,10 +38,6 @@
 
 <!-- map -->
 <br>
-<input type="text" id="radius" placeholder="miles willing to travel">
-<input type="button" value="Enter" onclick="codeAddress()">
-<input type="text" id="address" placeholder="Enter an address">
-<input type="button" value="Enter" onclick="codeAddress()">
 
 <!--The div elements for the map and message -->
 <div id="map"></div>
