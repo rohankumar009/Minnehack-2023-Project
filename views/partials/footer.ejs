@@ -10,6 +10,104 @@
         });
         
     }
+    var geocoder;
+    var map;
+    var marker;
+    var circle;
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var mapOptions = {
+        zoom: 8,
+        center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+}
+  
+  function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode({'address': address}, function (results, status) {
+    if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+    if (marker) {
+        marker.setMap(null);
+    }
+    marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location
+    });
+    setCircle();
+    } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+  }
+  
+  function setCircle() {
+    // Get the radius size from the input field
+    var radius = document.getElementById('radius').value;
+    // Convert miles to meters
+    var radiusInMeters = radius * 1609.34;
+    // Get the center of the map
+    var center = map.getCenter();
+    if (circle) {
+        circle.setMap(null);
+    }
+    // Create a new circle with the desired properties
+    circle = new google.maps.Circle({
+    strokeColor: '#00FF00',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#EAE7B1',
+    fillOpacity: 0.35,
+    map: map,
+    center: center,
+    radius: radiusInMeters
+    });
+  }
+  
+  function initMap() {
+    const center = {lat: 46.392410, lng: -94.636230};
+    const options = {zoom: 4, scaleControl: true, center: center};
+    map = new google.maps.Map(
+    document.getElementById('map'), options);
+    const point1 = {lat: 46.392410, lng: -94.636230};
+    marker = new google.maps.Marker({
+    position: point1,
+    map: map
+    });
+  }
+  
+  initialize();
+  
+  // Update the center of the map to the selected place
+  map.setCenter(place.geometry.location);
+  document.getElementById('msg').innerHTML = "Distance between center and point1/p1: " + distance.toFixed(2) + " mi.";
+  let directionsService = newgoogle.maps.DirectionsService();
+  let directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
+  // Create route from existing point1/p1 to center
+  const route = {
+    origin: point1/p1,
+    destination: center,
+    travelMode: 'driving'
+  }
+  directionsService.route(route,
+  function(response, status) {
+    if (status !== 'OK') {
+    window.alert('Directions request failed due to ' + status);
+    return;
+    } else {
+        directionsRenderer.setDirections(response);
+        var directionsData = response.routes[0].legs[0];
+        if (!directionsData) {
+            window.alert('Directions request failed');
+            return;
+        } else {
+            document.getElementById('msg').innerHTML += " Driving distance is " + directionsData.distance.text + " (" + directionsData.duration.text + ").";
+        }
+    }
+  });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeTUFLsAtsOvTdBWTFpz9HOjtIvTZdO_g&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
