@@ -1,35 +1,39 @@
 <%- include('./partials/header.ejs') %>
 <form method="post" action="/submit">
-    <label for="title">Event Name</label>
-    <input type="text" name="Name" required>
-<br>
-    <label for="Description">Description</label>
-    <textarea name="Description" id="" cols="30" rows="10" required></textarea>
+    <label for="title" style="margin-left: 10px;">Event Name</label>
+    <br>
+    <input type="text" style="margin-left: 10px;" name="Name" required>
+    <br>
+    <label for="Description" style="padding-top: 10px; padding-left: 10px;">Description</label>
+    <br>
+    <textarea name="Description" id="" cols="30" rows="10" style="margin-left: 10px;" required></textarea>
 <br>
 
-<h3>Event Type</h3>
-<input type="radio" name="Type" value="civic learning">
+<h3 style="margin-left: 10px; margin-top: 10px;">Event Type</h3>
+<input type="radio" style="margin-left: 10px;" name="Type" value="civic learning">
 <label for="Type">Civic Learning</label>
 <br>
-<input type="radio" name="Type" value="political engagement">
+<input type="radio" style="margin-left: 10px;" name="Type" value="political engagement">
 <label for="Type">Political Engagement</label>
 <br>
-<input type="radio" name="Type" value="community service">
+<input type="radio" style="margin-left: 10px;" name="Type" value="community service">
 <label for="Type">Community Service</label>
 <br>
-<input type="radio" name="Type" value="activism">
+<input type="radio" style="margin-left: 10px;" name="Type" value="activism">
 <label for="Type">Activism</label>
 <br>
-<input type="radio" name="Type" value="fundraising">
+<input type="radio" style="margin-left: 10px;" name="Type" value="fundraising">
 <label for="Type">Fundraising</label>
 <br>
 
   <br>
-    <input id="autocomplete" name="Address" placeholder="Enter a place" type="text" />
+    <label for="Address" style="margin-left: 10px;">Location:</label>
+    <br>
+    <input id="autocomplete" style="margin-left: 10px;" name="Address" placeholder="Enter a place" type="text" />
     <br>
     
       
-    <button type="submit" name="postButton">Submit</button>
+    <button type="submit" class="btn btn-primary" name="postButton" style="margin-left: 10px; margin-top: 10px;">Submit</button>
 </form>
 <script>
     let autocomplete;
