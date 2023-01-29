@@ -1,2 +1,16 @@
+<script>
+    let autocomplete;
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('autocomplete'),
+        {
+            types: ['address'],
+            componentRestrictions: {'country': ['US']},
+            fields: ['address_components', 'geometry'],
+        });
+        
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeTUFLsAtsOvTdBWTFpz9HOjtIvTZdO_g&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 </html>

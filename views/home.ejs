@@ -1,15 +1,44 @@
 <%- include('./partials/header.ejs') %>
-<button>filter</button>
-<button>distance</button>
-<button>event type</button>
+<form class="">
+    <input id="autocomplete" class="form-control mr-sm-2" type="search" placeholder="Your Location" aria-label="Search" style="width:40vh">
+</form>
+<div style="padding: 10px 0;">
+<button class="dropbtn" style="background-color: #3e8e41; color: #EAE7B1; border-radius: 0%; padding: 20px;">Filter By:</button>
+<div class="dropdown">
+    <button class="dropbtn" style="padding: 20px; margin-left: 20px; margin-right: 20px">Distance</button>
+    <div class="dropdown-content">
+      <a href="#">5 mi</a>
+      <a href="#">15 mi</a>
+      <a href="#">25 mi</a>
+      <a href="#">35 mi</a>
+      <a href="#">50 mi+</a>
+    </div>
+  </div>
+<div class="dropdown">
+    <button class="dropbtn" style="padding: 20px;">Event Type</button>
+    <div class="dropdown-content">
+      <a href="#">Civic Learning</a>
+      <a href="#">Political Engagement</a>
+      <a href="#">Community Service</a>
+      <a href="#">Activism</a>
+      <a href="#">Funding</a>
+    </div>
+  </div>
+</div>
+<div class="hl"></div>
 <% events.forEach(function(event){ %>
-    <div class="card" style="width: 18rem;">
+    <div style="padding-top: 10px;">
+
+    
+    <div class="card" style="width: 23rem; margin-left: 15px;">
         <div class="card-body">
             <h5 class="card-title"><%= event.name %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= event.address %></h6>
             <p class="card-text"><%= event.description %></p>
-            <a class="card-link">Read More</a>
+            <a class="card-link">Event Type: <%= event.eventType %></a>
         </div>
     </div>
+</div>
 <% }) %>
+<div class="vl"></div>
 <%- include('./partials/footer.ejs') %>
