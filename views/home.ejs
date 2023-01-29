@@ -2,4 +2,14 @@
 <button>filter</button>
 <button>distance</button>
 <button>event type</button>
+<% events.forEach(function(event){ %>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><%= event.name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= event.address %></h6>
+            <p class="card-text"><%= event.description %></p>
+            <a class="card-link">Read More</a>
+        </div>
+    </div>
+<% }) %>
 <%- include('./partials/footer.ejs') %>

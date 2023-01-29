@@ -24,21 +24,24 @@
 <label for="Type">Community Service</label>
   <br>
   <br>
-    <h3>Address</h3>
-    <label for="street">Street</label>
-    <input type="text" name="Street" required>
-    <br>
-    <label for="street">City</label>
-    <input type="text" name="City" required>
-    <br>
-    <label for="street">Zip</label>
-    <input type="number" name="Zip" required>
-    <br>
-    
-      
+    <input id="autocomplete" name="Address" placeholder="Enter a place" type="text" />
     <br>
     
       
     <button type="submit" name="postButton">Submit</button>
 </form>
+<script>
+    let autocomplete;
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('autocomplete'),
+        {
+            types: ['address'],
+            componentRestrictions: {'country': ['US']},
+            fields: ['address_components', 'geometry'],
+        });
+        
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeTUFLsAtsOvTdBWTFpz9HOjtIvTZdO_g&libraries=places&callback=initAutocomplete" async defer></script>
 <%- include('./partials/footer.ejs') %>

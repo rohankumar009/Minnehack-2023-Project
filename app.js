@@ -16,17 +16,15 @@ const eventSchema = new mongoose.Schema({
     name: String,
     description: String,
     eventType: String,
-    address: {
-        street: String,
-        city: String,
-        zip: String,
-    }
-
+    address: String,
 })
 var Event = mongoose.model("Event", eventSchema);
 
 app.get("/", function(req,res){
-    res.render("home", {events: Event});
+    Event.find({}, function(err, events){
+        res.render("home", {events: events});
+    })
+    
 })
 
 app.listen(3000, function(){
@@ -43,11 +41,7 @@ app.post('/submit', function(req, res) {
         name: req.body.Name,
         description: req.body.Description,
         eventType: req.body.Type,
-        address: {
-            street: req.body.Street,
-            city: req.body.City,
-            zip: req.body.Zip
-        }
+        address: req.body.Address,
     });
     event.save().then(() => {
         res.redirect("/");
