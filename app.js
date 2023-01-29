@@ -1,15 +1,17 @@
+const { serializeInteger } = require("whatwg-url");
+
 var express = require("express"),
     app = express(),
     ejs = require("ejs"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose");
-    LocalStrat = require("passport-local"),
-    passportLocalMongoose = require("passport-local-mongoose")
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+mongoose.set('strictQuery', false);
 mongoose.connect('mongodb://127.0.0.1:27017/eventsDB');
+
 const eventSchema = new mongoose.Schema({
     name: String,
     description: String,
@@ -17,14 +19,14 @@ const eventSchema = new mongoose.Schema({
     address: {
         street: String,
         city: String,
-        zip: Int8Array
+        zip: String,
     }
 
 })
 var Event = mongoose.model("Event", eventSchema);
 
 app.get("/", function(req,res){
-    res.render("home");
+    res.render("home", {events: Event});
 })
 
 app.listen(3000, function(){
@@ -33,7 +35,7 @@ app.listen(3000, function(){
 
 // Making a post
 app.get('/post', function (req, res) {
-    res.render("eventDetails")
+    res.render("post")
 })
 
 app.post('/submit', function(req, res) {
@@ -47,13 +49,12 @@ app.post('/submit', function(req, res) {
             zip: req.body.Zip
         }
     });
-    event.save().then(item => {
-        res.send("Event sucessfully Posted!");
+    event.save().then(() => {
+        res.redirect("/");
     })
     .catch(err => {
         res.status(400).send("Couldn't upload event")
     });
-    res.redirect("/")
 })
 
 
