@@ -105,3 +105,12 @@ input[type="post"]:hover {
   padding-top: 0.5vh;
   margin-left: 1vh;
 }
+
+#map {
+  position: absolute;
+  height: 92.5vh;
+  top: 7.5vh;
+  left: 40.6vh;
+  overflow: hidden;
+  right: 0;
+}
