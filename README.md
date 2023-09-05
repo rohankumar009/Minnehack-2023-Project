@@ -34,3 +34,6 @@ We learned how to use and code APIs, maintain and manage databases, javascript i
 
 ## What's next for Minerva:
 Minerva is still in its beginning stage, being restricted for time we were not able to install everything you would want from this kind of website, we plan to continue to build and include a login system with a confirmation system to prevent bot login. We also would like to change some of the graphics used for the markers on the map. End of the day, we started with nothing but hopes and ideas, and we were actually able to turn it into a full stack, so we are happy with what we have made.
+
+
+Dev Post: https://devpost.com/software/minerva-zo6sxh
